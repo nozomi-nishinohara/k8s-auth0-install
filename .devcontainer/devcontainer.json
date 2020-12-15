@@ -14,5 +14,5 @@
         "mads-hartmann.bash-ide-vscode",
         "timonwong.shellcheck"
     ],
-    "postStartCommand": "apk add git"
+    "postStartCommand": "apt-get update && apt-get install -y jq curl git"
 }

@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   k8s-auth0-install-dev:
-    image: alpine:3
+    image: ubuntu:latest
     container_name: k8s-auth0-install-dev
     tty: true
     volumes:
