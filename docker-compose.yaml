@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  k8s-auth0-install-dev:
+    image: alpine:3
+    container_name: k8s-auth0-install-dev
+    tty: true
+    volumes:
+      - ./:/src/:delegated
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
+        tag: "docker.logging_driver.{{.Name}}.{{.ID}}"

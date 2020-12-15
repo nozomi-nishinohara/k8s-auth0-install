@@ -1,0 +1,18 @@
+{
+    "name": "k8s-auth0-install-dev",
+    "dockerComposeFile": [
+        "../docker-compose.yaml"
+    ],
+    "service": "k8s-auth0-install-dev",
+    "workspaceFolder": "/src",
+    "settings": {
+        "terminal.integrated.shell.linux": null
+    },
+    "extensions": [
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "mads-hartmann.bash-ide-vscode",
+        "timonwong.shellcheck"
+    ],
+    "postStartCommand": "apk add git"
+}
