@@ -46,9 +46,10 @@ TAG_INFO=$(curl -sL -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.
 VALIABLE=$(echo $TAG_INFO | tr -d '[:cntrl:]' | jq ".assets[] | select(.name | contains(\"${platform}_$arch\")) | .id")
 # CHECK_SUM=$(echo $TAG_INFO | jq ".assets[] | select(.name | contains(\"checksums\")) | .id")
 download $VALIABLE
+[ "$(id -u)" -ne 0 ] && SUDO=sudo || SUDO=""
 
 tar -xvf k8s-auth0_linux_x86_64.tar.gz
 chmod +x k8s-auth0
-mv k8s-auth0 /usr/bin/
+$SUDO mv k8s-auth0 /usr/bin/
 rm -f k8s-auth0_linux_x86_64.tar.gz
 echo "Install Compleate"
