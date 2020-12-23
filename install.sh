@@ -40,7 +40,9 @@ download () {
         "https://$GITHUB_TOKEN@api.github.com/repos/nozomi-nishinohara/k8s-auth0-cli/releases/assets/$1"
 }
 
-rm -f k8s-auth0_${platform}_${arch}.tar.gz
+TAR_FILE=k8s-auth0_${platform}_${arch}.tar.gz
+
+rm -f $TAR_FILE
 
 TAG_INFO=$(curl -sL -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/nozomi-nishinohara/k8s-auth0-cli/releases/tags/v$VERSION)
 VALIABLE=$(echo $TAG_INFO | tr -d '[:cntrl:]' | jq ".assets[] | select(.name | contains(\"${platform}_$arch\")) | .id")
@@ -48,8 +50,8 @@ VALIABLE=$(echo $TAG_INFO | tr -d '[:cntrl:]' | jq ".assets[] | select(.name | c
 download $VALIABLE
 [ "$(id -u)" -ne 0 ] && SUDO=sudo || SUDO=""
 
-tar -xvf k8s-auth0_linux_x86_64.tar.gz
+tar -xvf $TAR_FILE
 chmod +x k8s-auth0
 $SUDO mv k8s-auth0 /usr/bin/
-rm -f k8s-auth0_linux_x86_64.tar.gz
+rm -f $TAR_FILE
 echo "Install Compleate"
